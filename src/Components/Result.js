@@ -1,10 +1,12 @@
-import React from 'react';
+import React,{useState} from 'react';
 
 const Result =(props)=>{
-
+    const [clone,cloneData] = useState([{}])
 console.log("result all Data", props.allData)
 console.log("result all Data", props.allData.Meal)
+console.log("clonesAllData",clone);
 
+console.log("Props llllllllllll ",props);
     return(
         <>
            
@@ -15,11 +17,21 @@ console.log("result all Data", props.allData.Meal)
                 <span id="mail1">{props.allData.number}</span><br></br>
                 <label>Restaurant</label> ---
                 <span id="mail2">{props.allData.RestaurantName}</span><br></br>
-                <label>Dishes</label> ---
-                <span id="mail3">{props.allData.DishName}</span><br></br>
-                <label>Servings</label> ---
-                <span id="mail4">{props.allData.Servings}</span><br></br>
+                {props.cloneAllData.map((finalData)=>{
+                    console.log("final data",finalData)
+                   
 
+                    return(
+                        <>
+
+                            <label>Dishes</label>---
+                            <span id="mail3">{finalData.Dish}</span><br></br>
+                            <label>Servings</label>----
+                            <span id="mail4">{finalData.noofSever}</span><br></br>
+                        </>
+                    )
+                })}
+              
 
 
                 </div>

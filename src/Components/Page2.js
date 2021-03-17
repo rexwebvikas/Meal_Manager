@@ -4,16 +4,16 @@ import Page3 from './Page3';
 
 
 const Page2 =(props)=>{
-    const [Show1,setShow] = useState(true);
-    const [page2 ,pageData] = useState([]);
-    
+    // const [Show1,setShow] = useState(true);
+    const [page2 , setpageData] = useState([]);
+    // const [data2, setData2] = useState([])
 
 
     console.log(props.data);
 
     const Click1 =()=>{
 
-        setShow(false)
+        props.setShow(2)
  }
 
  const handleInput =(e)=>{
@@ -21,7 +21,7 @@ const Page2 =(props)=>{
 
     const {id,value} = e.target;
     
-   pageData({page2,[id]: value})
+   setpageData({...props.page2, [id]: value})
 
    props.setAllData({...props.allData,
     [id]: value
@@ -37,8 +37,7 @@ console.log("Datass",props.Values)
 
     return(
         <>
-        {Show1 ?
-        <div>
+        { <div>
 
        
        <div id ="1" className="conatiner">
@@ -82,16 +81,13 @@ console.log("Datass",props.Values)
         </select><br></br>
         <div>{page2.Meal1}</div>
         <button>Pre</button>
-        <button id="button2" onClick={page2.RestaurantName && Click1}>Next</button>
+        <button id="button2" onClick={()=>Click1()}>Next</button>
 
         </div>
       
 
-        </div> :<Page3
-            Valuess ={props.Values}
-            allData= {props.allData} 
-            setAllData= {props.setAllData}
-        />}
+        </div> 
+        }
         </>
     )
 

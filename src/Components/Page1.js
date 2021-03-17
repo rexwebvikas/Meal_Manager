@@ -4,12 +4,12 @@ import Page2 from './Page2';
 import data1 from './data.json';
 
 
-const Page1 =()=>{
-    const [show,setShow] = useState(true);
+const Page1 =(props)=>{
+    // const [show,setShow] = useState(true);
 
      const [data, setData] = useState([]);
     const [data2, setData2] = useState([])
-    const[allData, setAllData] =useState([]);
+    // const[allData, setAllData] =useState([]);
     console.log(data2)
 
 
@@ -19,11 +19,13 @@ const Page1 =()=>{
     const handleInput =(e)=>{
         const {id,value} = e.target;
     
-         setData({...data,[id]: value})
+         props.setData({...props.data,[id]: value})
 
-         setAllData({...allData,
+        props.setAllData({...props.allData,
             [id]: value
          })
+    console.log("props",props)
+
 
     }
     console.log("vvvvvvvvvvvvvvvvv",data)
@@ -41,9 +43,10 @@ const Page1 =()=>{
 
 
     const Click=()=>{
-        setShow(false)
-      
+        props.data.Meal && props.data.number && props.setShow(1)
 
+      
+console.log("%%show", props.show)
     }
 
   const Datass= data2.filter((FilterData) =>{return FilterData.availableMeals.includes(data.Meal)
@@ -52,8 +55,7 @@ const Page1 =()=>{
 
     return(
         <>
-        {show ?
-           <div>
+        {<div>
       
          <div id ="0" className="container" >
         <lebal id="a">Please Select a Meal</lebal><br></br>
@@ -79,18 +81,15 @@ const Page1 =()=>{
         </select>
        
        
-        <button id="button1" onClick={data.Meal && data.number && Click}>Next</button>
+        <button id="button1" onClick={ ()=> Click() }>Next</button>
 
         </div>
         <div>{data.Meal}</div>
         <div>{data.number}</div>
         
-        </div> :<Page2 
-            Values ={Datass}
-            allData= {allData} 
-            setAllData = {setAllData}
-       
-        />}  
+        </div> 
+         
+       }  
         </>
 
     )
